@@ -11,14 +11,14 @@ async def cdn_serve(request: request, path):
 
 @app.route('/upload', methods=['POST'])
 async def cdn_upload(request):
-    path = str(secrets.randbelow(5000000000000000000000)) + request.files["file"][0].name
+    path = secrets.token_urlsafe(30)
     async with aiofiles.open(f'./cdn_items/{path}', 'wb') as f:
         try:
             await f.write(request.files['file'][0].body)
         except Exception:
             return response.json({'status': 'failed'})
         else:
-            return response.json({'status': 'success', 'location': f'http://localhost:8080/{path}'})
+            return response.json({'status': 'success', 'location': f'https://cdn.tennisbowling.com/{path}'})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8081)
