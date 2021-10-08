@@ -16,7 +16,7 @@ async def cdn_upload(request):
         try:
             await f.write(request.files['file'][0].body)
         except Exception:
-            return response.json({'status': 'failed'})
+            return response.json({'status': 'failed'}, status=500)
         else:
             return response.json({'status': 'success', 'location': f'https://cdn.tennisbowling.com/{path}'})
 
