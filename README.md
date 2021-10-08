@@ -1,5 +1,5 @@
 # tennis-cdn
-This is the source code for (my cdn)[https://cdn.tennisbowling.com].  
+This is the source code for [my cdn](https://cdn.tennisbowling.com).  
 You can run this if you want to, but if you want to use my cdn directly, make a POST request to https://cdn.tennisbowling.com/upload with a file attached.  
 Requests example:  
 send file  
