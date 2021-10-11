@@ -1,17 +1,19 @@
 from sanic import Sanic, request, response
 import aiofiles
 import secrets
+import os
 
 
 app = Sanic('TennisCdn')
 
 @app.route('/<path>', methods=['GET'])
 async def cdn_serve(request: request, path):
-    return await response.file_stream(f'./cdn_items/{path}', status=200)
+    return await response.file_stream(f'.pyt/cdn_items/{path}', status=200)
 
 @app.route('/upload', methods=['POST'])
 async def cdn_upload(request):
-    path = secrets.token_urlsafe(30)
+    name, extension = os.path.splitext(request.files['file'][0].name)
+    path = secrets.token_urlsafe(30) + extension
     async with aiofiles.open(f'./cdn_items/{path}', 'wb') as f:
         try:
             await f.write(request.files['file'][0].body)
