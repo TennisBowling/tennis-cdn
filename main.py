@@ -8,7 +8,7 @@ app = Sanic('TennisCdn')
 
 @app.route('/<path>', methods=['GET'])
 async def cdn_serve(request: request, path):
-    return await response.file_stream(f'.pyt/cdn_items/{path}', status=200)
+    return await response.file_stream(f'./cdn_items/{path}', status=200)
 
 @app.route('/upload', methods=['POST'])
 async def cdn_upload(request):
