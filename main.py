@@ -22,5 +22,10 @@ async def cdn_upload(request):
         else:
             return response.json({'status': 'success', 'location': f'https://cdn.tennisbowling.com/{path}'})
 
+@app.route('/list', methods=['GET'])
+async def cdn_list(request):
+    return response.json({'items': os.listdir('./cdn_items/')})
+        
+       
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8081)
