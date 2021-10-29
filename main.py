@@ -11,7 +11,7 @@ app = Sanic('TennisCdn')
 def getsize():
     size = 0
     for x in os.scandir('./cdn_items/'):
-        size + =os.path.getsize(x)
+        size += os.path.getsize(x)
     return size
 
 async def get_size():
